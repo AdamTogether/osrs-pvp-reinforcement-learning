@@ -57,6 +57,51 @@ Evaluation footage:\
 By following these steps, you'll be able to set up the environment and start training your own AI agent. You'll also
 be able to serve the pre-trained models via an API.
 
+## Run with Docker
+
+If you prefer not to install the project dependencies directly on your machine, a Docker configuration is provided.
+This image contains all Python and Java requirements for both the training system and the simulation server.
+
+### Build the Image
+
+```bash
+docker build -t osrs-pvp-rl .
+```
+
+### Start a Container
+
+GPU (requires the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)):
+
+```bash
+docker run --gpus all -it -p 43594:43594 osrs-pvp-rl
+```
+
+CPU only:
+
+```bash
+docker run -it -p 43594:43594 osrs-pvp-rl
+```
+
+The container drops you into a shell with the `pvp-ml` conda environment activated. Typical workflow:
+
+1. **Launch the simulation server**
+
+   ```bash
+   cd simulation-rsps/ElvargServer
+   ./gradlew run
+   ```
+
+2. **Open another shell in the running container** (e.g. `docker exec -it <container-id> bash`) and start training or
+   evaluation from the `pvp-ml` project:
+
+   ```bash
+   cd /app/pvp-ml
+   train --preset PastSelfPlay --name demo        # example training run
+   # or serve-api, eval, etc.
+   ```
+
+Port `43594` is forwarded for the simulation server so that local RSPS clients can connect if desired.
+
 ## [PvP ML](pvp-ml)
 
 This Python-based component encompasses the core machine learning system. It's the primary interface for training,
