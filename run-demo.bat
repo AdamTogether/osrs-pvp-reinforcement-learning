@@ -1,4 +1,5 @@
 @echo off
+
 REM Ensure commands run from the repository root
 cd /d "%~dp0"
 
