@@ -62,6 +62,19 @@ be able to serve the pre-trained models via an API.
 If you prefer not to install the project dependencies directly on your machine, a Docker configuration is provided.
 This image contains all Python and Java requirements for both the training system and the simulation server.
 
+### Prerequisites (Windows 11)
+
+1. Enable the Windows Subsystem for Linux (WSL) and install a Linux distribution:
+   ```powershell
+   wsl --install
+   ```
+2. Download and install [Docker Desktop for Windows](https://docs.docker.com/desktop/install/windows-install/).
+3. Launch Docker Desktop and ensure it is running with the **WSL 2** backend.
+4. Verify the installation from a terminal or PowerShell:
+   ```powershell
+   docker --version
+   ```
+
 ### Build the Image
 
 ```bash
