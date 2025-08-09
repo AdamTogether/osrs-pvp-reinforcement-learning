@@ -93,6 +93,8 @@ This image contains all Python and Java requirements for both the training syste
       sudo service docker restart   # or restart from the Docker Desktop UI
       ```
 
+Double-click `windows-setup-check.bat` to automatically verify these prerequisites and install missing components. After setup completes, `run-demo.bat` builds the image and prints the installed PyTorch version inside the container as a quick demonstration.
+
 ### Build the Image
 
 ```bash
