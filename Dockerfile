@@ -6,8 +6,8 @@ FROM mambaorg/micromamba:1.5.1
 # Create working directory
 WORKDIR /app
 
-# Copy source needed for environment creation
-COPY pvp-ml /app/pvp-ml
+# Copy source needed for environment creation with write permissions
+COPY --chown=1000:1000 pvp-ml /app/pvp-ml
 
 # Create conda environment from specification
 WORKDIR /app/pvp-ml
